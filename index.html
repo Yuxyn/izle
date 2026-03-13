@@ -1,67 +1,30 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
+    <meta name="monetag" content="89bf4ae66fa746616db6423a8c66d026">
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>İçerik Hazırlanıyor...</title>
     <style>
-        body { 
-            background: #0b0b0b; 
-            color: #fff; 
-            font-family: 'Segoe UI', sans-serif; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            height: 100vh; 
-            margin: 0; 
-        }
-        .card { 
-            background: #161616; 
-            padding: 40px; 
-            border-radius: 20px; 
-            text-align: center; 
-            box-shadow: 0 15px 35px rgba(0,0,0,0.8); 
-            border: 1px solid #222; 
-            max-width: 400px; 
-            width: 90%; 
-        }
+        body { background: #0b0b0b; color: #fff; font-family: 'Segoe UI', sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .card { background: #161616; padding: 40px; border-radius: 20px; text-align: center; box-shadow: 0 15px 35px rgba(0,0,0,0.8); border: 1px solid #222; max-width: 400px; width: 90%; }
         #timer { font-size: 60px; font-weight: bold; color: #00d2ff; margin: 20px 0; }
-        .btn { 
-            display: none; 
-            background: linear-gradient(135deg, #ff4757, #ff6b81); 
-            color: white; 
-            padding: 18px 35px; 
-            text-decoration: none; 
-            border-radius: 50px; 
-            font-weight: bold; 
-            font-size: 18px; 
-            transition: 0.3s; 
-            cursor: pointer; 
-            border: none;
-        }
+        .btn { display: none; background: linear-gradient(135deg, #ff4757, #ff6b81); color: white; padding: 18px 35px; text-decoration: none; border-radius: 50px; font-weight: bold; font-size: 18px; transition: 0.3s; cursor: pointer; border: none; }
         .btn:hover { transform: scale(1.05); box-shadow: 0 0 20px rgba(255, 71, 87, 0.4); }
-        .loader { 
-            border: 4px solid #333; 
-            border-top: 4px solid #00d2ff; 
-            border-radius: 50%; 
-            width: 40px; 
-            height: 40px; 
-            animation: spin 1s linear infinite; 
-            margin: 0 auto 15px; 
-        }
+        .loader { border: 4px solid #333; border-top: 4px solid #00d2ff; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 0 auto 15px; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-        p { color: #888; font-size: 14px; line-height: 1.6; }
     </style>
 </head>
 <body>
 
 <div class="card">
     <div class="loader" id="loader"></div>
-    <h2 id="title">Dosya Hazırlanıyor</h2>
-    <p id="sub-text">Sunucu ile güvenli bağlantı kuruluyor, lütfen sayfayı kapatmayın...</p>
+    <h2 id="title">Bağlantı Kuruluyor</h2>
+    <p>Sunucu doğrulaması yapılıyor, lütfen bekleyin...</p>
     <div id="timer">15</div>
     
-    <a href="https://mega.nz/file/7HQRRbCL#BFkLS-WE6Woo34uA4yQ81aqCsO9Oy-vbgRuKQB2ozvs" class="btn" id="megaBtn">İÇERİĞİ GÖRÜNTÜLE</a>
+    <a href="https://mega.nz/file/7HQRRbCL#BFkLS-WE6Woo34uA4yQ81aqCsO9Oy-vbgRuKQB2ozvs" class="btn" id="megaBtn">VİDEOYU İZLE</a>
 </div>
 
 <script>
@@ -69,8 +32,6 @@
     const timerElement = document.getElementById('timer');
     const btnElement = document.getElementById('megaBtn');
     const loaderElement = document.getElementById('loader');
-    const titleElement = document.getElementById('title');
-    const subText = document.getElementById('sub-text');
 
     const countdown = setInterval(() => {
         timeLeft--;
@@ -79,9 +40,7 @@
             clearInterval(countdown);
             timerElement.style.display = 'none';
             loaderElement.style.display = 'none';
-            titleElement.textContent = "Bağlantı Hazır!";
-            titleElement.style.color = "#2ed573";
-            subText.textContent = "Doğrulama tamamlandı. Aşağıdaki butondan videoya ulaşabilirsiniz.";
+            document.getElementById('title').textContent = "Bağlantı Hazır!";
             btnElement.style.display = 'inline-block';
         }
     }, 1000);
