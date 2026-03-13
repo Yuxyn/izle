@@ -3,45 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>İçerik Yükleniyor...</title>
+    <title>Video Hazırlanıyor...</title>
     <style>
-        body { background: #0f0f0f; color: #e0e0e0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; text-align: center; padding-top: 80px; margin: 0; }
-        .container { max-width: 500px; margin: 0 auto; padding: 20px; background: #1a1a1a; border-radius: 15px; border: 1px solid #333; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        h2 { color: #fff; }
-        #timer { font-size: 28px; color: #00d2ff; font-weight: bold; margin: 25px 0; }
-        #reklam-kutusu { width: 100%; height: 250px; background: #252525; border-radius: 8px; line-height: 250px; color: #666; border: 1px dashed #444; margin-bottom: 20px; }
-        #asil-icerik { display: none; animation: fadeIn 0.5s; }
-        .buton { display: inline-block; background: linear-gradient(135deg, #6e8efb, #a777e3); color: white; padding: 15px 35px; text-decoration: none; border-radius: 30px; font-weight: bold; transition: 0.3s; box-shadow: 0 4px 15px rgba(110, 142, 251, 0.4); }
-        .buton:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(110, 142, 251, 0.6); }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        body { 
+            background: #0f0f0f; 
+            color: #fff; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh; 
+            margin: 0; 
+        }
+        .card { 
+            background: #1a1a1a; 
+            padding: 40px; 
+            border-radius: 20px; 
+            text-align: center; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.7); 
+            border: 1px solid #333; 
+            width: 90%; 
+            max-width: 400px; 
+        }
+        #timer { font-size: 60px; font-weight: bold; color: #3498db; margin: 20px 0; }
+        .btn { 
+            display: none; 
+            background: linear-gradient(135deg, #2ecc71, #27ae60); 
+            color: white; 
+            padding: 18px 35px; 
+            text-decoration: none; 
+            border-radius: 50px; 
+            font-weight: bold; 
+            font-size: 20px; 
+            transition: 0.3s transform; 
+            cursor: pointer; 
+            border: none;
+            box-shadow: 0 5px 15px rgba(46, 204, 113, 0.3);
+        }
+        .btn:hover { transform: scale(1.05); }
+        .loader { 
+            border: 4px solid #333; 
+            border-top: 4px solid #3498db; 
+            border-radius: 50%; 
+            width: 40px; 
+            height: 40px; 
+            animation: spin 1s linear infinite; 
+            margin: 0 auto 15px; 
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        p { color: #888; font-size: 14px; }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <h2>Dosya Hazırlanıyor</h2>
-        <div id="reklam-kutusu">Reklam Yükleniyor...</div>
-        <div id="timer">15</div>
-        <p style="font-size: 14px; color: #888;">Lütfen bekleyin, otomatik yönlendirileceksiniz.</p>
+<div class="card">
+    <div class="loader" id="loader"></div>
+    <h2 id="title">Güvenli Bağlantı Kuruluyor</h2>
+    <p id="sub-text">Lütfen bekleyin, video sunucusuyla eşleşiliyor...</p>
+    <div id="timer">15</div>
+    
+    <a href="https://wacth.4meplayer.com/#nry1r" class="btn" id="videoBtn" target="_blank">VİDEOYU İZLE (HD)</a>
+</div>
 
-        <div id="asil-icerik">
-            <h3 style="color: #2ed573;">✔ Hazır!</h3>
-            <p>İstediğiniz içeriğe aşağıdaki butondan ulaşabilirsiniz.</p>
-            <a href="https://omg10.com/4/10723472" class="buton" target="_blank">İÇERİĞİ AÇ</a>
-        </div>
-    </div>
+<script>
+    let timeLeft = 15;
+    const timerElement = document.getElementById('timer');
+    const btnElement = document.getElementById('videoBtn');
+    const loaderElement = document.getElementById('loader');
+    const titleElement = document.getElementById('title');
+    const subText = document.getElementById('sub-text');
 
-    <script>
-        let saniye = 15;
-        const sayac = setInterval(function() {
-            saniye--;
-            document.getElementById("timer").innerText = saniye;
-            if (saniye <= 0) {
-                clearInterval(sayac);
-                document.getElementById("timer").style.display = "none";
-                document.getElementById("asil-icerik").style.display = "block";
-            }
-        }, 1000);
-    </script>
+    const countdown = setInterval(() => {
+        timeLeft--;
+        timerElement.textContent = timeLeft;
+        if (timeLeft <= 0) {
+            clearInterval(countdown);
+            timerElement.style.display = 'none';
+            loaderElement.style.display = 'none';
+            titleElement.textContent = "Bağlantı Başarılı!";
+            titleElement.style.color = "#2ecc71";
+            subText.textContent = "Videonuz hazır. İyi seyirler.";
+            btnElement.style.display = 'inline-block';
+        }
+    }, 1000);
+</script>
+
 </body>
 </html>
